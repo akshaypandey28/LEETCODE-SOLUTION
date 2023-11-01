@@ -11,13 +11,13 @@
  */
 class Solution {
 public:
-    int dia(TreeNode* root){
+    int levels(TreeNode* root){ //for finding the levels of the particular node
         if(root==NULL) return 0;
-        return 1+max(dia(root->left),dia(root->right));
+        return 1+max(levels(root->left),levels(root->right));
     }
     void pre(TreeNode* root,int &ans){
         if(root==NULL) return ;
-        ans=max(ans,dia(root->left)+dia(root->right));
+        ans=max(ans,levels(root->left)+levels(root->right));
         pre(root->left,ans);
         pre(root->right,ans);
     }
