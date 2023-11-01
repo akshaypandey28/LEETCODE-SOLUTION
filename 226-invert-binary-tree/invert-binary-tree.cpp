@@ -13,7 +13,8 @@ class Solution {
 public:
     TreeNode* mirror(TreeNode* root){
         if(root==NULL) return root;
-        swap(root->left,root->right);
+        swap(root->left,root->right); //har node pr jake unko swap krna hai aur ye traversal 
+        // se kiya ja skta hai
         mirror(root->left);
         mirror(root->right);
         return root;
