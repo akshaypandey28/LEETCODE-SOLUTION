@@ -15,21 +15,20 @@ public:
         if(root==NULL) return 0;
         return 1 + max(findLevel(root->left) ,findLevel(root->right));
     }
-    void pre(TreeNode* root,int currLevel,int reqLevel,vector<int> &temp){
+    void lOrder(TreeNode* root,vector<vector<int> > &ans,int level){
         if(root==NULL) return ;
-        if(currLevel==reqLevel) temp.push_back(root->val);
-        pre(root->left,currLevel+1,reqLevel,temp);
-        pre(root->right,currLevel+1,reqLevel,temp);
+        ans[level].push_back(root->val);
+        lOrder(root->left,ans,level+1);
+        lOrder(root->right,ans,level+1);
     }
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int> > ans;
-        vector<int> temp;
         int n=findLevel(root);
         for(int i=1; i<=n; i++){
-            pre(root,1,i,temp);
+            vector<int> temp;
             ans.push_back(temp);
-            temp.clear();
         }
+        lOrder(root,ans,0);
         return ans;
     }
 };
