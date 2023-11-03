@@ -15,18 +15,15 @@ public:
         if(root==NULL) return 0;
         return 1+ max(levels(root->left) , levels(root->right));
     }
-    void preLevelOrder(TreeNode* root,int currLevel,int reqLevel,vector<int> &ans){
+    void preOrder(TreeNode* root,vector<int> &ans,int level){
         if(root==NULL) return ;
-        if(currLevel==reqLevel) ans[currLevel]=root->val;
-        preLevelOrder(root->left,currLevel+1,reqLevel,ans);
-        preLevelOrder(root->right,currLevel+1,reqLevel,ans);
+        ans[level]=root->val;
+        preOrder(root->left,ans,level+1);
+        preOrder(root->right,ans,level+1);
     }
     vector<int> rightSideView(TreeNode* root) {
         vector<int> ans(levels(root),0);
-        int n=ans.size();
-        for(int i=0; i<n; i++){
-            preLevelOrder(root,0,i,ans);
-        }
+        preOrder(root,ans,0);
         return ans;
     }
 };
