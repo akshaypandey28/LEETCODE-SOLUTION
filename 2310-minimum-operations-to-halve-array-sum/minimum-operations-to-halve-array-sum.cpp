@@ -10,7 +10,6 @@ public:
         }
         double required_sum=sum/2.0;
         int count=0;
-        //required_sum total sum/2 se kam ho jana chahiye
         while(sum > required_sum){
             double el=pq.top();
             pq.pop();
