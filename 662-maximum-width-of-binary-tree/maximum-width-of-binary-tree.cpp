@@ -24,7 +24,7 @@ public:
             int leftMost, rightMost;
             for(int i=0; i<size; i++){
                 TreeNode* temp=q.front().first;
-                int curr_idx=q.front().second-curMin;
+                int curr_idx=q.front().second-curMin; // subtracted to prevent integer overflow
                 q.pop();
                 
                 if(i==0) leftMost=curr_idx;
