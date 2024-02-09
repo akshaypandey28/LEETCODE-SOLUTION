@@ -6,6 +6,28 @@ public:
     int cols;
     vector<vector<int> > h;
 
+    vector<vector<bool> > bfs(queue<pair<int,int> > &qu){  //queue stores the values where water can reach 
+        vector<vector<bool> > visited(rows,vector<bool> (cols,false));
+        while(qu.empty()!=1){
+            auto cell=qu.front();
+            qu.pop();
+
+            int i=cell.first;
+            int j=cell.second;
+            visited[i][j]=true; //visit ho gya
+            for(int d=0; d<4; d++){ //d is direction
+                int newRow = i+dir[d][0];
+                int newCol = j+dir[d][1]; //all three if shows that water cannot reach to neighbour cell 
+                if(newRow < 0 or newCol < 0 or newRow >=rows or newCol >=cols) continue; //exited the grid
+                if(visited[newRow][newCol]==true) continue; //water reach krna chahiye kisi bhi direction se
+                if(h[newRow][newCol] < h[i][j]) continue; // h[newRow][newCol] -> neighbours height, h[i][j] -> curr cell's heigh
+                qu.push({newRow, newCol}); //agr teeno if me koi problem nhi hai to mtlb neighbour me pani jayega
+            }
+        }
+        return visited;
+    }
+
+
     vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
         rows=heights.size();
         cols=heights[0].size();
@@ -36,26 +58,5 @@ public:
             }
         }
         return result;
-    }
-
-    vector<vector<bool> > bfs(queue<pair<int,int> > &qu){  //queue stores the values where water can reach 
-        vector<vector<bool> > visited(rows,vector<bool> (cols,false));
-        while(qu.empty()!=1){
-            auto cell=qu.front();
-            qu.pop();
-
-            int i=cell.first;
-            int j=cell.second;
-            visited[i][j]=true; //visit ho gya
-            for(int d=0; d<4; d++){ //d is direction
-                int newRow = i+dir[d][0];
-                int newCol = j+dir[d][1]; //all three if shows that water cannot reach to neighbour cell 
-                if(newRow < 0 or newCol < 0 or newRow >=rows or newCol >=cols) continue; //exited the grid
-                if(visited[newRow][newCol]==true) continue; //water reach krna chahiye kisi bhi direction se
-                if(h[newRow][newCol] < h[i][j]) continue; // h[newRow][newCol] -> neighbours height, h[i][j] -> curr cell's heigh
-                qu.push({newRow, newCol}); //agr teeno if me koi problem nhi hai to mtlb neighbour me pani jayega
-            }
-        }
-        return visited;
     }
 };
