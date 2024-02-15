@@ -41,9 +41,9 @@ public:
     }
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<char>> ans(n,vector<char> (n,'.'));
-        //string s="";
+        
         nQueens(0,n,ans);
-        //vector<vector<string>> 
+        
         return grid;
     }
 };
