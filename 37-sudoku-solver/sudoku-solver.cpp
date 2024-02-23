@@ -25,22 +25,18 @@ public:
     bool sudoko(vector<vector<char>> &board,int row,int col){
         if(row==9) return true;
         if(col==9) return sudoko(board,row+1,0);
-        if(board[row][col]=='.'){
+        if(board[row][col]!='.') return sudoko(board,row,col+1);
         for(int num=1; num<=9; num++){
             if(canBePlace(board,row,col,'0'+num)){
                 board[row][col]='0'+num;
                 bool res=sudoko(board,row,col+1); //iska mtlb hai ki aage ka bacha hua sudoku solve ho gya to res=true hoga
                 //and in this case aage ka kuch bhi check krne ka jrurat nhi hai aur return kr jana hai 
                 //for this if statement is used
-                if(res){
-                    return true;
-                }
+                if(res) return true;
                 board[row][col]='.';
             }
         }
         return false;
-    }
-    else return sudoko(board,row,col+1);
     }
     void solveSudoku(vector<vector<char>>& board) {
         sudoko(board,0,0);
