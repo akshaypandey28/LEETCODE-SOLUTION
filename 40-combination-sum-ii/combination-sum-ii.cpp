@@ -1,9 +1,9 @@
 class Solution {
 public:
-    set<vector<int> > s;
+    vector<vector<int>> ans;
     void f(vector<int>& candidates,vector<int> v,int target,int i,int sum){
         if(sum==target){
-            s.insert(v);
+            ans.push_back(v);
             return ;
         }
 
@@ -27,12 +27,10 @@ public:
     }
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         vector<int> v;
-        vector<vector<int>> ans;
+        ans.clear();
         sort(candidates.begin(),candidates.end());
         f(candidates,v,target,0,0);
-        for(auto ele:s){
-            ans.push_back(ele);
-        }
+        
         return ans;
     }
 };
