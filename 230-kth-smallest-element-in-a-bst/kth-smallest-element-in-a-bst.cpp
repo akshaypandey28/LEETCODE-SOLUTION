@@ -12,24 +12,19 @@
 class Solution {
 public:
     int ans=0;
-    bool f(TreeNode* root, int k, int& count) {
-        if (root == nullptr) 
-            return false;
-        
-        if (f(root->left, k, count)) 
-            return true;
-        
+    void f(TreeNode* root,int k,int &count){
+        if(root==NULL) return ;
+        f(root->left,k,count);
         count++;
-        if (count == k) {
-            ans = root->val;
-            return true;
+        if(count==k){
+            ans=root->val;
+            return ;
         }
-        
-        return f(root->right, k, count);
+        f(root->right,k,count);
     }
     int kthSmallest(TreeNode* root, int k) {
         int count=0;
-        bool a=f(root,k,count);
+        f(root,k,count);
         return ans;
     }
 };
