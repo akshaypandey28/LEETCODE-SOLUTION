@@ -1,7 +1,5 @@
 class Solution {
 public:
-    vector<int> dp;
-
     bool canPartition(vector<int>& nums) {
         int totalSum = accumulate(nums.begin(), nums.end(), 0);
         
@@ -9,13 +7,15 @@ public:
         
         int targetSum = totalSum / 2;
         
-        dp.resize(targetSum + 1, false);
+        vector<bool> dp(targetSum + 1, false);
         dp[0] = true; // Base case: subset with sum 0 is always possible
         
         for (int num : nums) {
+            // Iterate backwards to prevent overwriting values
             for (int j = targetSum; j >= num; j--) {
                 dp[j] = dp[j] || dp[j - num];
             }
+            if (dp[targetSum]) return true; // If subset sum is found, return true immediately
         }
         
         return dp[targetSum];
