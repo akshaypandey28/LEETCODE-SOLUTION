@@ -25,6 +25,8 @@ public:
         //     ans = max(ans, f(i));
         // }
         
+
+        //bottom up solution 
         for(int i = 0; i < nums.size(); i++) {
             for(int j = 0; j <= i-1; j++) {
                 if(arr[j] < arr[i]) {
