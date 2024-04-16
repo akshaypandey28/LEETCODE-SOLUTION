@@ -16,7 +16,7 @@ public:
     }
     int coinChange(vector<int>& coins, int amount) {
         dp.clear();
-        dp.resize(100005,-1);
+        dp.resize(10005,-1);
         int ans=f(coins,amount);
         if(ans==INT_MAX) return -1;
         return ans;
