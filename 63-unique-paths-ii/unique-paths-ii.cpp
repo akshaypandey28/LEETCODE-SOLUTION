@@ -15,7 +15,7 @@ public:
         m = grid[0].size();
         dp.clear();
         dp.resize(105, vector<int> (105, -1));
-        if(obstacleGrid[n-1][m-1]==1) return 0;
+        if(obstacleGrid[n-1][m-1]==1) return 0; //destination blocked
         return f(0,0);
     }
 };
