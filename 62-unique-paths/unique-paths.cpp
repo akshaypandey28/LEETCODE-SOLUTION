@@ -12,8 +12,6 @@ public:
     int uniquePaths(int m, int n) {
         dp.clear();
         dp.resize(m, vector<int>(n, -1));
-        int ans=0;
         return f(m,n,0,0);
-       // return ans;
     }
 };
