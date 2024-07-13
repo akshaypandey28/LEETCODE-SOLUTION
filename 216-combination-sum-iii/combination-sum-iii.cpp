@@ -5,17 +5,17 @@ public:
     void gen(int k,int sum,int i,vector<int> temp){
         if(i==v.size()){
             if(temp.size()==k and sum==0) ans.push_back(temp);
-
             return ;
         }
         //include
         if(v[i]<=sum){
             temp.push_back(v[i]);
-            gen(k,sum-v[i],i+1,temp);
+            gen(k,sum-v[i],i+1,temp); //include krna chahte hai v[i] ko
             temp.pop_back();
+            gen(k,sum,i+1,temp); //include nhi krna chahte hai v[i] ko
         }
         //exclude
-        gen(k,sum,i+1,temp);
+        else gen(k,sum,i+1,temp);
     }
     vector<vector<int>> combinationSum3(int k, int n) {
         //n can act as sum that i have to find for k length array
