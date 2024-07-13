@@ -13,7 +13,7 @@ public:
         }
     }
     vector<string> letterCombinations(string digits) {
-        if(digits.size()==0) return {};
+        if(digits.size()==0) return ans;
         string s="";
         gen(digits,0,s);
         return ans;
