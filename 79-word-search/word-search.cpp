@@ -4,16 +4,15 @@ public:
     int rows, cols;
     vector<vector<bool>> visited;
 
-    bool dfs(int r, int c, string& word, int index) {
-        if (index == word.size()) return true;
-        if (r < 0 || r >= rows || c < 0 || c >= cols || b[r][c] != word[index] || visited[r][c]) return false;
+    bool f(int r, int c, string word, int i) {
+        if (i == word.size()) return true;
+        if (r < 0 || r >= rows || c < 0 || c >= cols || b[r][c] != word[i] || visited[r][c]) return false;
 
         visited[r][c] = true;
 
-        bool found = dfs(r + 1, c, word, index + 1) ||
-                     dfs(r - 1, c, word, index + 1) ||
-                     dfs(r, c + 1, word, index + 1) ||
-                     dfs(r, c - 1, word, index + 1);
+        // Perform the DFS calls in a single line
+        bool found = f(r + 1, c, word, i + 1) || f(r - 1, c, word, i + 1) ||
+                     f(r, c + 1, word, i + 1) || f(r, c - 1, word, i + 1);
 
         visited[r][c] = false; // backtracking
         return found;
@@ -27,7 +26,7 @@ public:
 
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
-                if (dfs(r, c, word, 0)) return true;
+                if (f(r, c, word, 0)) return true;
             }
         }
         return false;
