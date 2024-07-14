@@ -13,21 +13,20 @@ public:
             ans.push_back(a);
             return ; 
         }
-        //if(dp[i]!=-1) return dp[i];
+        
         string temp;
         for(int j=i; j<s.size(); j++){
             temp+=s[j];
             if(st.find(temp)!=st.end()){
                 str.push_back(temp);
-                 f(s,j+1,str);// ) //return dp[i]= 1; //true 
+                f(s,j+1,str);
                 str.pop_back();
             } 
         }
-        //return dp[i]=0; //false
     }
     vector<string> wordBreak(string s, vector<string>& wordDict) {
         dp.clear();
-        dp.resize(305,-1);
+        dp.resize(25,-1);
         for(auto ele:wordDict) st.insert(ele);
         vector<string> str;
         f(s,0,str);
