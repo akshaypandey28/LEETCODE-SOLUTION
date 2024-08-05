@@ -12,7 +12,7 @@ public:
     void solve(vector<vector<char>>& b) {
         int m=b.size();
         int n=b[0].size();
-        //mark all border O to -1 using bfs or dfs
+        //mark all border O to E using bfs or dfs
         for(int i=0; i<m; i++){ //for col 0 and col n-1
             dfs(b,i,0,m,n);
             dfs(b,i,n-1,m,n);
@@ -22,7 +22,7 @@ public:
             dfs(b,m-1,i,m,n);
         }
 
-        //those cells which are -1 are marked into O and those which are marked with O are marked with X
+        //those cells which are E are marked into O and those which are marked with O are marked with X
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
                 if(b[i][j]=='E') b[i][j]='O';
