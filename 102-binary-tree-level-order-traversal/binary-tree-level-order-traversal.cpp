@@ -24,10 +24,6 @@ public:
     vector<vector<int>> levelOrder(TreeNode* root) {
         int n=findLevel(root);
         vector<vector<int> > ans(n);
-        // for(int i=1; i<=n; i++){
-        //     vector<int> temp;
-        //     ans.push_back(temp);
-        // }
         lOrder(root,ans,0);
         return ans;
     }
