@@ -22,12 +22,12 @@ public:
         lOrder(root->right,ans,level+1);
     }
     vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int> > ans;
         int n=findLevel(root);
-        for(int i=1; i<=n; i++){
-            vector<int> temp;
-            ans.push_back(temp);
-        }
+        vector<vector<int> > ans(n);
+        // for(int i=1; i<=n; i++){
+        //     vector<int> temp;
+        //     ans.push_back(temp);
+        // }
         lOrder(root,ans,0);
         return ans;
     }
