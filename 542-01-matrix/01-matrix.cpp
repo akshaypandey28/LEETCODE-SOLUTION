@@ -15,7 +15,7 @@ public:
             }
         }
         //0 is already visited so whenever queue is traversed then it doesn't update the distance for 0 as it   
-        //is marked as 1 , so it works only for mat[i][j]==1 and update it's distance from nearest zero
+        //is marked as 1 , so it works only for cell whose value is mat[i][j]==1 and update it's distance from nearest zero
         vector<int> dir={-1,0,1,0,-1}; //direction for up down left right
         while(qu.empty()!=1){
             auto curr=qu.front();
