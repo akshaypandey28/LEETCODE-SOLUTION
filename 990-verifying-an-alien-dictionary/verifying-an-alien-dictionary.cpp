@@ -6,22 +6,20 @@ public:
         for (int i = 0; i < order.size(); i++) map[order[i]] = i;
 
         for (int i = 0; i < words.size() - 1; i++) {
-            // Traverse each character in a word
-            for (int j = 0; j < words[i].size(); j++) {
-                // If all the letters have matched so far, but the current word is longer than the next one, 
-                //the two are not in order and we return False
-                if (j >= words[i + 1].size()) return false;
-                // Check if the letters in the same position in the two words are different
-                if (words[i][j] != words[i + 1][j]) {
-                    // Check if the rank of the letter in the current word is greater than the rank in the same 
-                    // position in the next word
-                    if (map[words[i][j]] > map[words[i + 1][j]]) return false;
-
-                    //else => if we find the first different character and they are sorted, then there's no need to 
-                    // check remaining letters
-                    else break;
+            string s1=words[i];
+            string s2=words[i+1];
+            int len=min(s1.size(),s2.size());
+            bool diff=false;
+            for(int j=0; j<len; j++){
+                if(s1[j]!=s2[j]){
+                    int order1=map[s1[j]];
+                    int order2=map[s2[j]];
+                    if(order1 > order2) return false;
+                    diff=true;
+                    break;
                 }
             }
+            if(diff==false and s1.size() > s2.size()) return false;
         }
         return true;
     }
