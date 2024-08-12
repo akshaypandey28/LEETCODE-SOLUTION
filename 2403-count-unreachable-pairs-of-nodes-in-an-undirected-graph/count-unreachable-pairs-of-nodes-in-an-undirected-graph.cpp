@@ -1,3 +1,18 @@
+/*Approach 
+any node whose parent are same then they can reach to each other but if the parent of one node differs than other node
+then they are unreachable
+firstly i apply DSU to make parent vector 
+groups gets formed because of DSU
+count which which nodes parent are same and stored it in vector
+there are n(7) nodes available 
+if 4 nodes have parent 0
+2 nodes have parent 1
+and 1 nodes have parent itself (3)
+means traverse the map 
+first iteration tells that 4 nodes whose parent is 0 they are unreachable to other 3 nodes which helps in making pairs
+subtract 7-ele.second(4) = 3 nodes are unreachable from 4 other nodes which make 12 pairs and n becomes(7-4) = 3
+and so on after this same process continues
+ */
 class Solution {
 public:
     int find(vector<int> &parent,int x){
