@@ -10,26 +10,27 @@
  * };
  */
 class BSTIterator {
-public:
-    deque<int> dq;
-    void in(TreeNode* root){
-        if(root==NULL) return ;
-        in(root->left);
-        dq.push_back(root->val);
-        in(root->right);
+public: 
+    stack<TreeNode*> st;
+    void lNr(TreeNode* root){
+        while(root){
+            st.push(root);
+            root=root->left;
+        }
     }
     BSTIterator(TreeNode* root) {
-        in(root);
+        lNr(root);
     }
     
     int next() {
-        int from_front=dq.front();
-        dq.pop_front();
-        return from_front;
+        TreeNode* node=st.top();
+        st.pop();
+        lNr(node->right);
+        return node->val;
     }
     
     bool hasNext() {
-       return dq.size()>=1 ? true:false;
+        return !st.empty();
     }
 };
 
