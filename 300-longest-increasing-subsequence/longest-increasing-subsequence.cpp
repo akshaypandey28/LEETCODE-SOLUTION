@@ -1,40 +1,26 @@
 class Solution {
 public:
-        
-    vector<int> arr;
     vector<int> dp;
-    int f(int i) {
-        if(i == 0) return 1;
-        int mx = INT_MIN;
-        if(dp[i] != -1) return dp[i];
-        for(int j = 0; j <= i-1; j++) {
-            if(arr[j] < arr[i]) {
-                mx = max(mx, f(j));
-            }
+    vector<int> arr;
+    int f(int i){
+        // if(i==0) return 1;
+        if(dp[i]!=-1) return dp[i];
+        int maxi=INT_MIN;
+        for(int j=0; j<=i-1; j++){
+            if(arr[j]<arr[i]) maxi=max(maxi,f(j));
         }
-        if(mx == INT_MIN) return dp[i] = 1;
-        return dp[i] = 1 + mx;
+        if(maxi==INT_MIN) return dp[i]=1;
+        return dp[i]=1+maxi;
     }
-    
     int lengthOfLIS(vector<int>& nums) {
-        arr = nums;
-        dp.resize(2505, -1);
-        dp[0] = 1;
-        int ans = INT_MIN;
-        // for(int i = 0; i < nums.size(); i++) {
-        //     ans = max(ans, f(i));
-        // }
-        
-
-        //bottom up solution 
-        for(int i = 0; i < nums.size(); i++) {
-            for(int j = 0; j <= i-1; j++) {
-                if(arr[j] < arr[i]) {
-                    dp[i] = max(dp[i], 1 + dp[j]);
-                }
-            }
-            if(dp[i] == -1) dp[i] = 1;
-            ans = max(ans, dp[i]);
+        int n=nums.size();
+        arr=nums;
+        dp.clear();
+        dp.resize(n+1,-1);
+        dp[0]=1;
+        int ans=1;
+        for(int i=1; i<n; i++){
+            ans=max(ans,f(i));
         }
         return ans;
     }
