@@ -15,13 +15,10 @@ public:
         ListNode* temp=head;
         vector<int> v;
         while(temp->next!=NULL){
-            int maxi=max(temp->val,temp->next->val);
-            int mini=min(temp->val,temp->next->val);
-            int val=gcd(maxi ,mini);
+            int val=gcd(temp->val ,temp->next->val);
             v.push_back(val);
             temp=temp->next;
         }
-        for(int i=0; i<v.size(); i++) cout<<v[i]<<" ";
         temp=head;
         int i=0;
         while(temp->next!=NULL){
