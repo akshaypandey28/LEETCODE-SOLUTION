@@ -11,22 +11,12 @@
 class Solution {
 public:
     ListNode* insertGreatestCommonDivisors(ListNode* head) {
-
         ListNode* temp=head;
-        vector<int> v;
         while(temp->next!=NULL){
-            int val=gcd(temp->val ,temp->next->val);
-            v.push_back(val);
-            temp=temp->next;
-        }
-        temp=head;
-        int i=0;
-        while(temp->next!=NULL){
-            ListNode* a=new ListNode(v[i]);
+            ListNode* a=new ListNode(gcd(temp->val ,temp->next->val));
             a->next=temp->next;
             temp->next=a;
             temp=temp->next->next;
-            i++;
         }
         return head;
     }
