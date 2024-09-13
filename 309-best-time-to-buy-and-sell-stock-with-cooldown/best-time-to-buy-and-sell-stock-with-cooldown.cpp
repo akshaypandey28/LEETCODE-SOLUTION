@@ -4,14 +4,11 @@ public:
     int f(int i,int buy,vector<int> &prices){
         if (i >= prices.size()) return 0;
         if (dp[i][buy] != -1) return dp[i][buy];
-        int profit=INT_MIN;
-        if(buy==0){
-            profit=max(-prices[i]+f(i+1,1,prices) , 0 + f(i+1,0,prices)); //on ith day buy or not buy
-        }
-        else{
-            profit=max(prices[i]+f(i+2,0,prices) , 0 + f(i+1,1,prices)) ; //on ith day sell or not sell
-        }
-        return dp[i][buy]=profit;
+        int ans=INT_MIN;
+        ans=f(i+1,buy,prices); //avoid case no sell and no buy both included that's why but has no effect
+        if(buy==0) ans=max(-prices[i]+f(i+1,1,prices),ans ); //on ith day buy
+        else      ans=max(prices[i]+f(i+2,0,prices) , ans) ; //on ith day sell
+        return dp[i][buy]=ans;
     }
     int maxProfit(vector<int>& prices) {
         int n=prices.size();
