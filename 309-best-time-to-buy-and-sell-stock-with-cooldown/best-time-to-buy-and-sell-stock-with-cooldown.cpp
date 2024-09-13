@@ -2,7 +2,8 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int n=prices.size();
-        vector<vector<int>> d(n+2,vector<int>(2,0));
+        vector<vector<int>> d(n+2,vector<int>(2,0)); //n+2 because of i+2 in else condition if n=5 , i=4 , i+2=6 that's why
+        //d contains at least 6th row
         for(int i=n-1; i>=0; i--){
             for(int buy=1; buy>=0; buy--){
                 int ans=INT_MIN;
