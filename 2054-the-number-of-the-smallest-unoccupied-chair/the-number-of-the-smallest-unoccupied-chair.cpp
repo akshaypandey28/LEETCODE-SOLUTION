@@ -1,31 +1,43 @@
+#define pp pair<int,int>
 class Solution {
 public:
     static bool cmp(vector<int> &a,vector<int> &b){
         return a[0]<b[0];
     }
     int smallestChair(vector<vector<int>>& times, int targetFriend) {
-        int targetArrivalTime = times[targetFriend][0];
+        int n = times.size();
+        priority_queue<pp, vector<pp>, greater<pp> > occupied; //{departTime, chairNo}
+        priority_queue<int, vector<int>, greater<int>> free; //min heap of free chair
+        int targetFriendArrival = times[targetFriend][0];
         sort(times.begin(),times.end(),cmp);
-        int n=times.size();
-        vector<int> occupied(n,0); //at max we will have 0 to n-1 chairs
-        /* We need to sort the times based on arrival time but we don't want to
-            loose the friend number after sorting. So, store the arrival time
-            of targetFriend because it's given in the question that 
-            Each arrival time is distinct. */
-        
-        for(vector<int> &time : times) {
-            int arrival = time[0];
-            int depart  = time[1];
-            //Find the first unoccupied chair
-            for(int i = 0; i<n; i++) {
-                if(occupied[i] <= arrival) {
-                    occupied[i] = depart; //update with current friend depart time
-                    if(arrival == targetArrivalTime)
-                        return i;
-                    break;
+        int chairNo=0;
+        for(int i = 0; i < n; i++) {
+            int arrival  = times[i][0];
+            int depart   = times[i][1];
+            
+            //free chairs accordingly
+            while(occupied.empty()!=1 && occupied.top().first <= arrival) {
+                free.push(occupied.top().second); //this chair is now free
+                occupied.pop();
+            }
+
+            if(free.empty()) { //empty hai 
+                occupied.push({depart, chairNo});
+
+                if(arrival == targetFriendArrival)
+                    return chairNo;
+
+                chairNo++;
+            } else { //empty nhi hai
+                int leastChairAvailable = free.top();
+                free.pop();
+                if(arrival == targetFriendArrival) {
+                    return leastChairAvailable;
                 }
+                occupied.push({depart, leastChairAvailable});
             }
         }
+
         return -1;
     }
 };
