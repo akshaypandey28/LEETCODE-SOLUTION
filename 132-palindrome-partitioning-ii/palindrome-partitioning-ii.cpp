@@ -1,36 +1,31 @@
 class Solution {
 public:
-    bool isPalindrome(int i, int j, string &s) {
-    while (i < j) {
-        if (s[i] != s[j]) return false;
-        i++;
-        j--;
-    }
-    return true;
-}
-
-// Recursive function to find the minimum number of partitions to make palindromes.
-int minPartitions(int i, int n, string &str, vector<int> &dp) {
-    // Base case: If we've reached the end of the string.
-    if (i == n) return 0;
-
-    if (dp[i] != -1) return dp[i];
-    int minCost = INT_MAX;
-    // Consider all possible substrings starting from the current index.
-    for (int j = i; j < n; j++) {
-        if (isPalindrome(i, j, str)) {
-            // If the substring is a palindrome, calculate the cost and minimize it.
-            int cost = 1 + minPartitions(j + 1, n, str, dp);
-            minCost = min(minCost, cost);
+    vector<int> dp;
+    bool palindrome(string &s, int start, int end){//function for checking the palindrome
+        while(start<end){
+            if(s[start]!=s[end]) return false;
+            start++;
+            end--;
         }
+        return true;
     }
-    return dp[i] = minCost;
-}
-    int minCut(string str) {
-        int n = str.size();
-    vector<int> dp(n, -1);
-    // Calling the recursive function and subtracting 1 as it counts partitions, not cuts.
-    return minPartitions(0, n, str, dp) - 1; //-1 because function calculates the total number of palindrome substring in minimum 
+    int f(string &s,int i){
+        if (i == s.size()) return 0;
+        if (dp[i] != -1) return dp[i];
+        int ans=INT_MAX;
+        for(int j=i; j<s.size(); j++){
+            if(palindrome(s,i,j)){
+                int cost= 1 + f(s,j+1);
+                ans=min(ans,cost);
+            }
+        }
+        return dp[i]=ans;
+    }
+    int minCut(string s) {
+        int n=s.size();
+        dp.clear();
+        dp.resize(n,-1);
+        return f(s,0) - 1; //-1 because function calculates the total number of palindrome substring in minimum 
 //but the answer is total number of partitioning can be done
     }
 };
