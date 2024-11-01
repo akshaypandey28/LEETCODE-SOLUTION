@@ -1,7 +1,8 @@
 class Solution {
 public:
     int subarraysDivByK(vector<int>& nums, int k) {
-        unordered_map<int, int> m;
+        unordered_map<int, int> m; //first is remainder and second is no. of count with that particular
+        //remainder
         m[0] = 1;  // Initialize with 1 to count subarrays that directly sum to a multiple of k
         int count = 0;
         int sum = 0;
