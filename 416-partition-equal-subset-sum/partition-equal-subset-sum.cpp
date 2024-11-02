@@ -3,11 +3,8 @@ class Solution {
 public:
     vector<vector<int> > dp;
     bool f(vector<int> &arr,int i,int sum){
-        //if(sum==0) return true; //agr sum 0 ho gya to elements bache ho ya na bache ho answer true hoga
-        if(i==arr.size()) { //agr sum 0 nhi hua aur i arr.size() ke equal ho gya to answer false hoga
-            if(sum==0)return true;
-            else return false;
-        }
+        if(sum==0) return true; //agr sum 0 ho gya to elements bache ho ya na bache ho answer true hoga
+        if(i==arr.size()) return false; //agr sum 0 nhi hua aur i arr.size() ke equal ho gya to answer false hoga
         if(dp[i][sum]!=-1) return dp[i][sum];
         if(arr[i]<=sum){
             //we can include or exclude
