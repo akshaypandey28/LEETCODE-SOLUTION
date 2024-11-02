@@ -1,25 +1,28 @@
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
-        if (s1.length() > s2.length()) return false;
+        int n = s1.length();
+        int m = s2.length();
 
-        vector<int> s1Count(26, 0), s2Count(26, 0);
-        
-        // Count frequencies of s1 and the first window in s2
-        for (int i = 0; i < s1.length(); ++i) {
-            s1Count[s1[i] - 'a']++;
-            s2Count[s2[i] - 'a']++;
+        // If s1 is longer than s2, it cannot be a substring
+        if (n > m) return false;
+
+        // Sort the string s1
+        sort(s1.begin(), s1.end());
+
+        // Iterate over each substring of s2 of length equal to s1
+        for (int i = 0; i <= m - n; i++) {
+            // Extract a substring of length n from s2 starting at index i
+            string temp = s2.substr(i, n);
+
+            // Sort the substring
+            sort(temp.begin(), temp.end());
+
+            // If the sorted substring matches the sorted s1, return true
+            if (temp == s1) return true;
         }
 
-        // Slide the window over s2
-        for (int i = 0; i < s2.length() - s1.length(); ++i) {
-            if (s1Count == s2Count) return true;
-            // Update the window
-            s2Count[s2[i] - 'a']--;
-            s2Count[s2[i + s1.length()] - 'a']++;
-        }
-
-        // Check the last window
-        return s1Count == s2Count;
+        // No permutation found in s2
+        return false;
     }
 };
