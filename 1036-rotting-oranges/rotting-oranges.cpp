@@ -1,7 +1,5 @@
 class Solution {
 public:
-
-
     int orangesRotting(vector<vector<int>>& grid) {
         queue<pair<int,int> > qu;
         int fo=0;
@@ -14,7 +12,14 @@ public:
                 else if(grid[i][j]==2) qu.push({i,j}); //multisource bfs step
             }
         }
-        //we have added all the source
+        //we have added all the source 
+        //this {-1,-1} is push because it separated the first min , second min , and so on
+        //how ??
+        //whenever this comes is shows first minute is completed , if i don't want to include 
+        //this then i can remove this line and use bfs like tree 
+    //find size of the queue initially and check for that level(indicated size of the level)
+    //and so on
+    //for reference check striver solution find size 
         qu.push({-1,-1});
 
         int mins=0;
