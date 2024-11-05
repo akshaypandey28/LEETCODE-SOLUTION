@@ -20,7 +20,7 @@ public:
         for(int i=0; i<n; i++){
             for(int j=0; j<n; j++){ 
                 //1 means there is an edge between i and j
-                if(isConnected[i][j]==1) Union(parent,i,j);
+                if(isConnected[i][j]==1 and i!=j) Union(parent,i,j);
             }
         }
         int count=0;
