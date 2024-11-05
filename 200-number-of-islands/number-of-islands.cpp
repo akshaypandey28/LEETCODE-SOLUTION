@@ -6,15 +6,7 @@ public:
         int cc=0; //stores the number of connected component
         for(int r=0; r < rows; r++){
             for(int c=0; c < cols; c++){
-                if(grid[r][c]=='0'){
-                    //it is a water body
-                    continue;
-                }
-                // if(grid[r][c]=='-1'){
-                //     //it is a visited land
-                //     continue;
-                // }
-                //new unvisited land piece found , i.e new connected component
+                if(grid[r][c]=='0') continue;  //it is a water body
                 cc++;
                 grid[r][c]='0'; //marked it visited
                 queue<pair<int ,int> > qu;
