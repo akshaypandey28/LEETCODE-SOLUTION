@@ -10,21 +10,21 @@ public:
             // when the node is not visited
             if (!vis[it]) {
                 if (dfsCheck(it, adj, vis, pathVis, check) == true) {
-                    check[node] = 0; 
+                    check[node] = 0;  //contain cycle on iteration through this node
                     return true;
                 }
             }
             // if the node has been previously visited
             // but it has to be visited on the same path
             else if (pathVis[it]) {
-                check[node] = 0; 
+                check[node] = 0;  //contain cycle on iteration through this node
                 return true;
             }
         }
 
-        check[node] = 1;
-        pathVis[node] = 0;
-        return false;
+        check[node] = 1; //part of the answer because this node doesn't contain any cycle throughout the iteration through this node
+        pathVis[node] = 0; //baktracking of marking the node path untracked
+        return false; //cycle not detected
     }
 
     vector<int> eventualSafeNodes(vector<vector<int>>& adj) {
