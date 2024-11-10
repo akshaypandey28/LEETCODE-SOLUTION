@@ -10,14 +10,14 @@ public:
             // when the node is not visited
             if (!vis[it]) {
                 if (dfsCheck(it, adj, vis, pathVis, check) == true) {
-                    check[node] = 0; // Retained as per your code
+                    check[node] = 0; 
                     return true;
                 }
             }
             // if the node has been previously visited
             // but it has to be visited on the same path
             else if (pathVis[it]) {
-                check[node] = 0; // Retained as per your code
+                check[node] = 0; 
                 return true;
             }
         }
@@ -33,7 +33,7 @@ public:
 
         for (int i = 0; i < V; i++) {
             if (!vis[i]) {
-                dfsCheck(i, adj, vis, pathVis, check); // Add the missing semicolon
+                dfsCheck(i, adj, vis, pathVis, check); 
             }
         }
 
