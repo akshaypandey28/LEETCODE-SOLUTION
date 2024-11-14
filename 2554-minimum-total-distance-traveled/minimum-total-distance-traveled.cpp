@@ -4,9 +4,9 @@ public:
     //ri robot index
     //fi factory index
     ll solve(int ri, int fi, vector<int>& robot, vector<int>& positions, vector<vector<ll>>& t) {
-        if(ri >= robot.size())  return 0; //no more distance to be covered
+        if(ri >= robot.size())  return 0; //no more robots to be covered
 
-        if(fi >= positions.size())   return 1e12;
+        if(fi >= positions.size())   return 1e12; //invalid case and minimum is required
 
         if(t[ri][fi] != -1)   return t[ri][fi];
 
