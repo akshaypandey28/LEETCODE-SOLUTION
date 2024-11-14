@@ -11,7 +11,7 @@ public:
             dp[num] = (dp[num] + 1) % mod;
             sum[num] = (sum[num] + num) % mod;
 
-            if (num - 1 >= 0 && dp[num - 1] > 0) {
+            if (num - 1 >= 0) {
                 dp[num] = (dp[num] + dp[num - 1]) % mod;
                 sum[num] = (sum[num] + sum[num - 1] + (long long)(dp[num - 1]) * num % mod) % mod;
                 // 1st =>khud ki wjh se sum, 2nd => sum of subsequences of num-1 and 3rd => no of
@@ -19,7 +19,7 @@ public:
                 // subsequences of value num
             }
 
-            if (num + 1 < MAX && dp[num + 1] > 0) {
+            if (num + 1 < MAX ) {
                 dp[num] = (dp[num] + dp[num + 1]) % mod;
                 sum[num] = (sum[num] + sum[num + 1] + (long long)(dp[num + 1]) * num % mod) % mod;
                 // 1st =>khud ki wjh se sum, 2nd => sum of subsequences of num+1 and 3rd => no of
