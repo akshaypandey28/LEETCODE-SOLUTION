@@ -1,23 +1,26 @@
+//Approach-1 (TLE) 
+//T.C : (O(n^2))
+//S.C : O(1)
 class Solution {
 public:
-    static bool cmp(vector<int> a,vector<int> b){
-        return a[0] < b[0];
-    }
-    vector<vector<int>> insert(vector<vector<int>>& v, vector<int>& newInterval) {
-        v.push_back(newInterval);
-        sort(v.begin(),v.end());
-        vector<vector<int>> ans;
-        vector<int> temp=v[0];
-        for(int i=1; i<v.size(); i++){
-            if(temp[1]>=v[i][0]) {
-                temp[1]=max(temp[1],v[i][1]);
-            }
-            else{
-                ans.push_back(temp);
-                temp=v[i];
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+        int i = 0;
+        
+        while(i < intervals.size()) {
+            if(intervals[i][1] < newInterval[0])
+                i++;
+            else if (intervals[i][0] > newInterval[1]){
+                intervals.insert(intervals.begin() + i, newInterval);
+                return intervals;
+            } else {
+                //Overlap : merge them
+                newInterval[0] = min(newInterval[0], intervals[i][0]);
+                newInterval[1] = max(newInterval[1], intervals[i][1]);
+                intervals.erase(intervals.begin()+i);
             }
         }
-        ans.push_back(temp);
-        return ans;
+        
+        intervals.push_back(newInterval);
+        return intervals;
     }
 };
