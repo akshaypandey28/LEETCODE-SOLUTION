@@ -20,9 +20,9 @@ public:
         que.push({src, 0});
         distance[src] = 0;
         
-        int level = 0;
+        int steps = 0;
         
-        while(!que.empty() && level <= k) {
+        while(!que.empty() && steps <= k) {
             int N = que.size();
             
             while(N--) {
@@ -41,7 +41,7 @@ public:
                     }
                 }
             }
-            level++;
+            steps++;
         }
         return distance[dst] == INT_MAX ? -1 : distance[dst];
     }
