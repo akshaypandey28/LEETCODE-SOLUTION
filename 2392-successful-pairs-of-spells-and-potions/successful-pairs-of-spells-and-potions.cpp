@@ -12,7 +12,7 @@ public:
             
             int index = lower_bound(begin(potions), end(potions), minPotion) - begin(potions);
             
-            ans.push_back(m-index);
+            ans.push_back(m-index); //denotes the no. of pairs can be made with ith index
         }
         return ans;
     }
