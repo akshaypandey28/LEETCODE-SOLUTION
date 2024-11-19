@@ -10,7 +10,6 @@ public:
                 sum-=nums[l];
                 s.erase(nums[l]);
                 l++;
-
             }
 
             sum+=nums[r];
@@ -22,8 +21,6 @@ public:
                 l++;
             }
             if(s.size()==k) ans=max(ans,sum);
-            
-            
             r++;
         }
         return ans;
