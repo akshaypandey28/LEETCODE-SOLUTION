@@ -1,6 +1,6 @@
 //Approach-1 (Using Ordered Map)
-//T.C : ~O(n) - Explained in the video why O(n) ?
-//S.C : ~O(1) - Explained in the video why O(1) ? 
+//T.C : ~O(n)
+//S.C : ~O(1)
 //S.C because map size can never go beyond 3 that's why O(1) 
 //T.C because O(n*log(size of the map)) but here size of the map is 3 that's why T.C is O(n)
 //log(size of the map) because of insertion and deletion in the map
