@@ -28,7 +28,56 @@ public:
                 chunksCount++;
             }
         }
+        return chunksCount;
+    }
+};
+
+/* 
+//Approach-2 (Using cumulative Sum)
+//T.C : O(n)
+//S.C : O(n)
+class Solution {
+public:
+    int maxChunksToSorted(vector<int>& arr) {
+        int n = arr.size();
+        int cumSum    = 0;
+        int normalSum = 0;
+
+        int chunksCount = 0;
+        for(int i = 0; i < n; i++) {
+            cumSum += arr[i];
+            normalSum += i;
+
+            if(cumSum == normalSum) {
+                chunksCount++;
+            }
+        }
 
         return chunksCount;
     }
 };
+*/
+
+/* 
+//Approach-2 (Using max check)
+//T.C : O(n)
+//S.C : O(n)
+class Solution {
+public:
+    int maxChunksToSorted(vector<int>& arr) {
+        int n = arr.size();
+        int maxTillNow = -1;
+
+        int chunksCount = 0;
+        for(int i = 0; i < n; i++) {
+            maxTillNow = max(maxTillNow, arr[i]);
+
+            if(maxTillNow == i) {
+                chunksCount++;
+            }
+        }
+
+        return chunksCount;
+    }
+};
+*/
