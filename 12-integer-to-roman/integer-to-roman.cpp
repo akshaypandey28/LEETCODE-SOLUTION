@@ -1,5 +1,24 @@
 class Solution {
 public:
+    vector<int>    val{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}; //size is 13
+    vector<string> sym{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+    string intToRoman(int num) {
+        string ans="";
+        for(int i=0; i<13; i++){
+            if(num==0) break;
+            int times=num/val[i];
+
+            while(times--)  ans=ans+sym[i]; 
+
+            num=num%val[i];
+        }
+        return ans;
+    }
+};
+
+/* 
+class Solution {
+public:
     void make(string &ans,char major,char middle,char minor,int val){//major=X,middle=V,minor=I and so on further
         if(val<=3){
             for(int i=1; i<=val; i++) ans.push_back(minor);
@@ -31,3 +50,4 @@ public:
         return ans;
     }
 };
+ */
