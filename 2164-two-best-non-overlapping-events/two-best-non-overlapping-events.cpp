@@ -4,7 +4,7 @@
 class Solution {
 public:
     int n;
-    int t[100001][3];
+    int t[100001][2];
     //upper_bound of endTime
     int binarySearch(vector<vector<int>>& events, int endTime) {
         int l = 0,r = n-1;
