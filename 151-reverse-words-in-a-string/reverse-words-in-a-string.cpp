@@ -2,30 +2,19 @@ class Solution {
 public:
     string reverseWords(string s) {
         string ans="";
-        stack<char> st;
-        bool flag=false;
-        for(int i=0; i<s.size(); i++){
-            if(s[i]==' '){
-                while(st.empty()!=1){
-                    ans.push_back(st.top());
-                    st.pop();
-                    flag=true;
-                }
-                if(flag==true) {
-                    ans.push_back(' ');
-                    flag=false;
+        string temp="";
+        reverse(s.begin(),s.end());
+        for(char c:s){
+            if(c==' '){
+                if(temp.size()!=0){
+                    ans=temp+" "+ans;
+                    temp="";
                 }
             }
-            else{
-                st.push(s[i]);
-                //flag=false;
-            }
+            else temp.push_back(c);
         }
-        while(st.empty()!=1){
-            ans.push_back(st.top());
-            st.pop();
-        }
-        if(ans[ans.size()-1]==' ') ans.pop_back();
+        if(temp.empty()!=1) ans=temp+" "+ans;
+        ans.pop_back(); //to remove the last space
         reverse(ans.begin(),ans.end());
         return ans;
     }
