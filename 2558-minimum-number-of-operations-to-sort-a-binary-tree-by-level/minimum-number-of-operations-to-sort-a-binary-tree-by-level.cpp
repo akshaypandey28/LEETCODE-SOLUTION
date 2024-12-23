@@ -1,0 +1,70 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+//Approach - Simple BFS with hidden problem
+//T.C : O(n + level * wlogw), level = total levels, w = number of nodes in a level
+//S.C : O(n)
+class Solution {
+public:
+    int countMinSwapsToSort(vector<int>& vec) {
+        int swaps = 0;
+        vector<int> sortedVec(begin(vec), end(vec));
+        
+        sort(begin(sortedVec), end(sortedVec));
+
+        unordered_map<int, int> mp; //nums[i] -> i
+        for(int i = 0; i < vec.size(); i++) mp[vec[i]] = i;
+        
+
+        for(int i = 0; i < vec.size(); i++) {
+            if(vec[i] == sortedVec[i]) continue; //no swap required
+            
+            int actual_element=sortedVec[i]; //actual_element jo hona chahiye tha vec[i] pr
+            int currIdx = mp[actual_element]; //currIdx of the actual_element in vec array
+            //means i have to swap the element of currIdx with the element at ith idx
+            //and update the map which stores the index of the element
+
+            mp[vec[i]] = currIdx; //after swapping vecc[i] lies at currIdx
+            mp[actual_element] = i;
+            swap(vec[currIdx], vec[i]);
+            swaps++;
+        }
+
+        return swaps;
+    }
+
+    int minimumOperations(TreeNode* root) {
+        queue<TreeNode*> que;
+        que.push(root);
+
+        int result = 0;
+
+        while(!que.empty()) {
+            int n = que.size(); //total nodes at current level
+            vector<int> vec;
+
+            while(n--) {
+                TreeNode* temp = que.front();
+                que.pop();
+                vec.push_back(temp->val);
+
+                if(temp->left)  que.push(temp->left);
+
+                if(temp->right) que.push(temp->right);
+                
+            }
+
+            result += countMinSwapsToSort(vec);
+        }
+
+        return result;
+    }
+};
