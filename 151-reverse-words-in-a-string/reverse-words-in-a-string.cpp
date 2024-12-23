@@ -19,3 +19,21 @@ public:
         return ans;
     }
 };
+
+/* 
+class Solution {
+public:
+    string reverseWords(string s) {
+        stringstream ss(s);
+        string temp = "";
+
+        string result = "";
+        //By default stringstream breaks on ' ' (space character)
+        while(ss >> temp) {
+            result = temp + " " + result;
+        }
+
+        return result.substr(0, result.length()-1);  //to remove the last space
+    }
+};
+ */
