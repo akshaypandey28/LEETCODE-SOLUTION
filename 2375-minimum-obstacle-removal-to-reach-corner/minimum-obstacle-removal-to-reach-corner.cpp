@@ -17,8 +17,8 @@ public:
         priority_queue<pp, vector<pp>, greater<pp>> pq;
         pq.push({0, {0, 0}}); //{wt, {i, j}}
         //O(Elog(V))
-        // E = number of edges
-        // V = number of vertices
+        // E = number of edges = m*n
+        // V = number of vertices = m*n
         while(!pq.empty()) {
             auto curr = pq.top();
             pq.pop();
