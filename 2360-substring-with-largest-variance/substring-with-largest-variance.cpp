@@ -37,6 +37,7 @@ public:
     
                     //else => secondCount==0 i have to check for whether there is second character or not
                     //at (ch-1) idx which contribute for secondCount=1 value
+                    //for handling edge case like s="abb"; pastLowFreq term is used and else is used
                     else { 
                         if (pastLowFreq==true) result = max(result, firstCount - 1);
                         //result=max(result,firstCount-secondCount);
