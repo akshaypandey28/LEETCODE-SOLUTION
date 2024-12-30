@@ -12,7 +12,7 @@ public:
     
     int brokenCalc(int startValue, int target) {
         //instead of going from startValue to target , go for reverse target to startValue
-        //(*2,-1) changes to (/2,+1)
+        //(*2,-1) changes to (/2,+1) because *2 can cause integer overflow
         return f(target, startValue);
     }
 };
