@@ -2,16 +2,15 @@ class Solution {
 public:
     int partitionString(string s) {
         int ans=0;
-        string temp="";
+        unordered_set<char> seen; 
         for(char ch:s){
-            if(temp.find(ch)!=-1){
-                temp="";
+            if(seen.find(ch)!=seen.end()){
                 ans++;
-                temp.push_back(ch);
+                seen.clear();
             }
-            else temp.push_back(ch);
+            seen.insert(ch);
         }
-        if(temp.size()!=0) ans++;
+        if(seen.size()!=0) ans++;
         return ans;
     }
 };
