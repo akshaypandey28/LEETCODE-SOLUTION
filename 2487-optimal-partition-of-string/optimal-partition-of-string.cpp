@@ -1,16 +1,19 @@
 class Solution {
 public:
     int partitionString(string s) {
-        int ans=0;
-        unordered_set<char> seen; 
-        for(char ch:s){
-            if(seen.find(ch)!=seen.end()){
-                ans++;
-                seen.clear();
+        vector<int> lastSeen(26, -1);
+        
+        int count = 0;
+        int substringStart = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (lastSeen[s[i] - 'a'] >= substringStart) {
+                count++;
+                substringStart = i;
             }
-            seen.insert(ch);
+            lastSeen[s[i] - 'a'] = i;
         }
-        if(seen.size()!=0) ans++;
-        return ans;
+
+        return count+1;
     }
 };
