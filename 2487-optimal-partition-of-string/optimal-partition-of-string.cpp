@@ -14,6 +14,45 @@ public:
             lastSeen[s[i] - 'a'] = i;
         }
 
-        return count+1;
+        return count+1; //+1 because 1 substring gets remaining
     }
 };
+
+/* 
+self 
+class Solution {
+public:
+    int partitionString(string s) {
+        int ans=0;
+        string temp="";
+        for(char ch:s){
+            if(temp.find(ch)!=-1){
+                temp="";
+                ans++;
+                temp.push_back(ch);
+            }
+            else temp.push_back(ch);
+        }
+        if(temp.size()!=0) ans++;
+        return ans;
+    }
+};
+
+self
+class Solution {
+public:
+    int partitionString(string s) {
+        int ans=0;
+        unordered_set<char> seen; 
+        for(char ch:s){
+            if(seen.find(ch)!=seen.end()){
+                ans++;
+                seen.clear();
+            }
+            seen.insert(ch);
+        }
+        if(seen.size()!=0) ans++;
+        return ans;
+    }
+};
+ */
