@@ -76,8 +76,7 @@ public:
             }
             if(i<=n)
             {
-                printNumber(i);
-                i++;
+                printNumber(i++);
             }
             c.notify_all();
         }
