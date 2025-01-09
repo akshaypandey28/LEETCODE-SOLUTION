@@ -9,17 +9,13 @@ public:
                 int temp=nums[i]; //for traversing the number of steps
                 int j=i+1; //it is used for checking the value of dp from i+1
                 int ans=INT_MAX; //used to store the min steps from any point
-                int idx=j;
                 while(temp--){
                     if(dp[j]==0) {
                         j++;
                         continue;
                     }
                     if(dp[j]!=0){
-                        if(ans>dp[j]){
-                            ans=min(ans,dp[j]);
-                            idx=j;
-                        }
+                        if(ans>dp[j]) ans=min(ans,dp[j]);
                     }
                     j++;
                 }
