@@ -16,7 +16,7 @@ void per(vector<vector<int>> &ans,int i,vector<int> &nums){
 }
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> ans;
-        //vector<int> a;
+       
         per(ans,0,nums);
         return ans;
     }
