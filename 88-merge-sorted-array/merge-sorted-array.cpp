@@ -1,19 +1,19 @@
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-        if(nums2.size()==0) return ;
-        int i=0,j=0;
-        while(i<m ){
-            if(nums1[i]>nums2[0]){
-                swap(nums1[i],nums2[0]);
-                sort(nums2.begin(),nums2.end());
+        int actual_idx=m+n-1; //for storing elements
+        m--;
+        n--;
+        while(n>=0){
+            if(m>=0 and nums1[m]>=nums2[n]){
+                nums1[actual_idx]=nums1[m];
+                m--;
             }
-            i++;
-        }
-        while(j<n and i<nums1.size()){
-            nums1[i]=nums2[j];
-            j++;
-            i++;
+            else {
+                nums1[actual_idx]=nums2[n];
+                n--;
+            }
+            actual_idx--;
         }
         return ;
     }
