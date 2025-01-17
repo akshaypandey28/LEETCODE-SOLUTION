@@ -29,7 +29,7 @@ public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<int> v;
         ans.clear();
-        sort(candidates.begin(),candidates.end());
+        //sort(candidates.begin(),candidates.end());
         f(candidates,v,target,0,0);
         
         return ans;
