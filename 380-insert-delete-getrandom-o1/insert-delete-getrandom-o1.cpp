@@ -22,10 +22,8 @@ public:
         if(mp.find(val) == mp.end())  return false;
         
         int idx       = mp[val];
-        int temp      = vec.back();
-        vec.back()    = val;
-        vec[idx]      = temp;
-        mp[temp]      = idx;
+        vec[idx]      = vec.back();
+        mp[vec.back()] = idx;
         vec.pop_back();
         mp.erase(val);
         return true;
