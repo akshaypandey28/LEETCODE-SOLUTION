@@ -1,4 +1,4 @@
-/* const int prime = 1e9 + 7;
+const int prime = 1e9 + 7;
 
 class Solution {
 public:
@@ -27,11 +27,11 @@ public:
 
         return next[0];  // The result is stored at next[0]
     }
-}; */
+};
 
 
 
-
+/* 
 const int prime = 1e9 + 7;
 
 class Solution {
@@ -67,3 +67,4 @@ public:
     }
 };
 
+ */
