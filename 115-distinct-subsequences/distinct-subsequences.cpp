@@ -1,4 +1,4 @@
-const int prime = 1e9 + 7;
+/* const int prime = 1e9 + 7;
 
 class Solution {
 public:
@@ -27,4 +27,43 @@ public:
 
         return next[0];  // The result is stored at next[0]
     }
+}; */
+
+
+
+
+const int prime = 1e9 + 7;
+
+class Solution {
+public:
+    int helper(int i, int j, string &s1, string &s2, vector<vector<int>> &dp) {
+        // Base case: If we have matched all of s2
+        if (j == s2.size()) return 1;
+
+        // Base case: If we have exhausted s1 but not s2
+        if (i == s1.size()) return 0;
+
+        // Check if the result is already computed
+        if (dp[i][j] != -1) return dp[i][j];
+
+        // Recursive cases
+        if (s1[i] == s2[j]) {
+            // Include the match and skip the match
+            dp[i][j] = (helper(i + 1, j + 1, s1, s2, dp) + helper(i + 1, j, s1, s2, dp)) % prime;
+        } else {
+            // Skip the current character in s1
+            dp[i][j] = helper(i + 1, j, s1, s2, dp) % prime;
+        }
+
+        return dp[i][j];
+    }
+
+    int numDistinct(string s1, string s2) {
+        int n = s1.size();
+        int m = s2.size();
+        // Initialize a DP table with -1 for memoization
+        vector<vector<int>> dp(n, vector<int>(m, -1));
+        return helper(0, 0, s1, s2, dp);
+    }
 };
+
