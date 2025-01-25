@@ -8,7 +8,6 @@ public:
         
         vector<int> curr(m + 1, 0), next(m + 1, 0);
         next[m] = 1;  // Base case: When s2 is empty, there's exactly 1 subsequence that matches
-
         // Loop through the strings from end to start
         for (int i = n - 1; i >= 0; i--) {
             curr[m] = 1;  // For an empty s2, there's always 1 subsequence that matches
@@ -22,10 +21,10 @@ public:
                 }
             }
             // Move current row to next for the next iteration
-            swap(curr, next);
+            next=curr;
         }
 
-        return next[0];  // The result is stored at next[0]
+        return curr[0];  // The result is stored at next[0]
     }
 };
 
