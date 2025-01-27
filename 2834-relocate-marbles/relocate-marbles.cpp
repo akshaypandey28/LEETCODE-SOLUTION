@@ -1,9 +1,10 @@
 //self
 //T.C => O( (m+n)logn )
+//S.C=> O(n+m)
 class Solution {
 public:
     vector<int> relocateMarbles(vector<int>& nums, vector<int>& moveFrom, vector<int>& moveTo) {
-        unordered_set<int> s; //occupied position
+        unordered_set<int> s; //occupied position 
         int n=nums.size(),m=moveFrom.size();
         for(int i=0; i<n; i++) s.insert(nums[i]); //O(n)
 
