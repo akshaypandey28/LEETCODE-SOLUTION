@@ -1,21 +1,13 @@
 //Approach-3 (DSU - Union Find with Path compression)
 //T.C : O(n * alpha(n))
 //S.C : O(n)
-class DSU {
+class Solution {
 public:
-    vector<int> parent;
-    vector<int> rank;
+        vector<int> parent;
+        vector<int> rank;
 
-    DSU(int n) {
-        parent.resize(n+1); //1, 2, 3, 4, 5.., n
-        rank.resize(n+1);
-        for(int i = 1; i <= n; i++) {
-            parent[i] = i;
-            rank[i] = 0;
-        }
-    }
-
-    int find(int x) {
+       
+        int find(int x) {
         if(x == parent[x]) return x;
 
         return parent[x] = find(parent[x]); //path compression
@@ -36,14 +28,17 @@ public:
             rank[y]++;
         } 
     }
-};
-
-class Solution {
-public:
     vector<int> findRedundantConnection(vector<vector<int>>& edges) {
         int n = edges.size();
 
-        DSU dsu(n);
+        parent.resize(n+1); //1, 2, 3, 4, 5.., n
+        rank.resize(n+1);
+
+        for(int i = 1; i <= n; i++) {
+            parent[i] = i;
+            rank[i] = 0;
+        }
+        
         //T.C : DSU = alpha(n)
 
         //T.C : O(n * alpha(n))
@@ -51,9 +46,9 @@ public:
             int u = edge[0];
             int v = edge[1];
 
-            if(dsu.find(u) == dsu.find(v)) return edge;
+            if(find(u) == find(v)) return edge;
             
-            dsu.Union(u, v);
+            Union(u, v);
         }
 
         return {};
