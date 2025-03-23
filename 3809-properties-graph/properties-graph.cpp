@@ -10,7 +10,7 @@ public:
             }else if(st.count(a[i])>0){
                 st2.insert(a[i]);
                 cnt++;
-                if(cnt>=k){
+                if(cnt>=k){ 
                     break;
                 }
             }
