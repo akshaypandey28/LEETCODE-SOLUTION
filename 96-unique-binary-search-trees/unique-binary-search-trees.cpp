@@ -7,8 +7,8 @@ public:
         dp[0] = dp[1] = 1;
         dp[2] = 2;
         //f(n) nikalna hai to f(n-1) f(n-2) etc sare answer hone chahiye
-        for(int i = 3; i <= n; i++) { // order
-            // f(i)
+        for(int i = 3; i <= n; i++) { // order i represents root that is har bar sbko root bnaya 
+        //ja rha hai  
             for(int k = 1; k <= i; k++) {
             // k -> potential root
                 dp[i] += dp[k-1]*dp[i-k];
