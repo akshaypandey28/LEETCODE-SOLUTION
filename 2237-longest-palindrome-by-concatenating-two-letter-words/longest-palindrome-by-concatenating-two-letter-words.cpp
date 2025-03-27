@@ -3,11 +3,8 @@ public:
     int longestPalindrome(vector<string>& words) {
         unordered_map<string, int> mp;
         
-        
         //update map with frequency
-        for(string &word : words) {
-            mp[word]++;
-        }
+        for(string &word : words) mp[word]++;
         
         bool centerUsed = false; //for frequency one waale strings
         
