@@ -12,16 +12,16 @@ public:
             }
         }
         int n=nums.size();
-        int count=0;
+        int left_freq=0;
         for(int i=0; i<n; i++){
             if(nums[i]==domi){
-                count++; //denotes frequency of dominant in the left subarray 
-                int right_freq=m[domi]-count;//denotes frequency of dominant in the right
-                // subarray 
+                left_freq++; //denotes frequency of dominant in the left subarray 
+                int right_freq=m[domi]-left_freq;//denotes frequency of dominant in the
+                // right subarray 
 
-                int left=(i+1)/2;
-                int right=(n-i-1)/2;
-                if(count>left and right_freq>right) return i;
+                int left_size=i+1;
+                int right_size=n-i-1;
+                if(left_freq>left_size/2 and right_freq>right_size/2) return i;
             }
         }
         return -1;
