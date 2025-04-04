@@ -1,6 +1,6 @@
 class Solution {
 public:
-//using binary search
+//using binary search T.C=> O(m*logn)
     int maxDistance(vector<int>& nums1, vector<int>& nums2) {
         int m=nums1.size(),n=nums2.size();
         int ans=0;
