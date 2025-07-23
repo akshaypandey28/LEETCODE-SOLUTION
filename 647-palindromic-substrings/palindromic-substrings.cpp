@@ -1,27 +1,30 @@
 class Solution {
 public:
+    int dp[1001][1001];
+    bool ispalindrome(string& temp, int i, int j) {
+
+        if (i > j) {
+            return true;
+        }
+        if(dp[i][j] != -1){
+            return dp[i][j];//0 means false and 1 means true
+        }
+        if (temp[i] == temp[j]) {
+            return dp[i][j]=ispalindrome(temp, i + 1, j - 1);
+        }
+        return dp[i][j]=false;
+    }
     int countSubstrings(string s) {
-        int count=0;
-        int n=s.size();
-        for(int i=0; i<n; i++){
-            //expand around center but for even case
-            int low=i-1;
-            int high=i;
-            while(low>=0 and high<n and s[low]==s[high]){
-                count++;
-                low--;
-                high++;
-            }
-            //expand around center but for odd case
-            low=i-1;
-            high=i+1;
-            count++;
-            while(low>=0 and high<n and s[low]==s[high]){
-                count++;
-                low--;
-                high++;
+        memset(dp,-1,sizeof(dp));
+        int cnt = 0;
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i; j < s.length(); j++) {
+
+                if (ispalindrome(s, i, j)) {
+                    cnt++;
+                }
             }
         }
-        return count;
+        return cnt;
     }
 };
