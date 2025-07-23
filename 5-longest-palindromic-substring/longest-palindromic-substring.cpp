@@ -4,10 +4,11 @@ public:
         int maxLength=1;
         int len=s.size(), start=0;
         int low,high;
-        for(int i=1; i<len; i++){
+        for(int i=0; i<len; i++){
             low=i-1;
             high=i;
-            while(low>=0 and high<len and s[low]==s[high]){
+            while(low>=0 and high<len and s[low]==s[high]){ //this loop runs for a substring with two characters equal and checking
+            //along it's left and right
                 if(high-low+1 > maxLength){
                     start=low;
                     maxLength=high-low+1;
@@ -17,7 +18,8 @@ public:
             }
             low=i-1;
             high=i+1;
-            while(low>=0 and high<len and s[low]==s[high]){
+            while(low>=0 and high<len and s[low]==s[high]){//this loop runs for a substring with a character be a center position 
+            //and checking along it's left and right
                 if(high-low+1 > maxLength){
                     start=low;
                     maxLength=high-low+1;
