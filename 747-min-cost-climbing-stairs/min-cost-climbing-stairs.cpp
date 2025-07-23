@@ -1,6 +1,5 @@
 class Solution {
 public:
-    int calu_cost=INT_MAX;
     vector<int> dp;
     long long solve(vector<int> &cost,int i,int n){
         if(i>=n) return 0;
