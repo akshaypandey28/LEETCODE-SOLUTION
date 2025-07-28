@@ -1,27 +1,25 @@
-#define pp pair<int,int> 
-
 class MinStack {
 public:
-    vector<pp> v;
+    stack<pair<int,int>> st;
     MinStack() {
         
     }
     
     void push(int val) {
-        if(v.size()==0) v.push_back({val,val});
-        else v.push_back({val,min(v.back().second,val)});
+        if(st.empty()) st.push({val,val});
+        else st.push({val,min(st.top().second,val)});
     }
     
     void pop() {
-        v.pop_back();
+        st.pop();
     }
     
     int top() {
-        return v.back().first;
+        return st.top().first;
     }
     
     int getMin() {
-        return v.back().second;
+        return st.top().second;
     }
 };
 
