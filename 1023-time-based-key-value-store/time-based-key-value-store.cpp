@@ -1,27 +1,34 @@
+#define pp pair<int,string>
 class TimeMap {
 public:
+    unordered_map<string,vector<pp>> m;
     TimeMap() {
         
     }
-    map<string,vector<pair<int,string>>>cnt;
+    
     void set(string key, string value, int timestamp) {
-        cnt[key].push_back({timestamp,value});
+        m[key].push_back({timestamp,value});
     }
     
     string get(string key, int timestamp) {
-        auto &p=cnt[key];
-        int l=0,r=p.size()-1;
-        string s;
-        while(l<=r){
-            int mid=l+(r-l)/2;
-            if(p[mid].first<=timestamp){
-                s=p[mid].second;
+        auto &ele=m[key];
+        int l=0,h=ele.size()-1;
+        string ans="";
+        while(l<=h){
+            int mid=l+(h-l)/2;
+            if(ele[mid].first<=timestamp){
+                ans=ele[mid].second;
                 l=mid+1;
             }
-            else{
-                r=mid-1;
-            }
+            else h=mid-1;
         }
-        return s;
+        return ans;
     }
 };
+
+/**
+ * Your TimeMap object will be instantiated and called as such:
+ * TimeMap* obj = new TimeMap();
+ * obj->set(key,value,timestamp);
+ * string param_2 = obj->get(key,timestamp);
+ */
