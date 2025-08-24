@@ -21,10 +21,11 @@ public:
         }
     }
     int makeConnected(int n, vector<vector<int>>& connections) {
-        rank.resize(n + 1, 0);
-        parent.resize(n + 1);
+        if(connections.size() < n - 1) return -1;
+        rank.resize(n, 0);
+        parent.resize(n);
         int extraWires=0;
-        for (int i = 0; i <= n; i++) parent[i] = i;
+        for (int i = 0; i < n; i++) parent[i] = i;
         for(auto ele:connections){
             int a=find(ele[0]);
             int b=find(ele[1]);
@@ -41,8 +42,7 @@ public:
 
         int wiresToBeNeeded=connectedComponent-1;
 
-        if(extraWires>=wiresToBeNeeded) return wiresToBeNeeded;
-        return -1;
+        return wiresToBeNeeded;
     }
 };
 
