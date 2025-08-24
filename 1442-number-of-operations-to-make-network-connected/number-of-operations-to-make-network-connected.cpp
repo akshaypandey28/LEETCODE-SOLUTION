@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int> rank, parent;
+    vector<int> parent;
     int find(int x){
         // TX:(log*n);
         // This method returns which group/cluster x belongs to
@@ -11,33 +11,19 @@ public:
         // TX:(log*n);
         a = find(a);
         b = find(b);
-        if(a == b) return;
-        if(rank[a] >= rank[b]) {
-            rank[a]++;
-            parent[b] = a;
-        } else {
-            rank[b]++;
-            parent[a] = b;
-        }
+        parent[b] = a;
     }
     int makeConnected(int n, vector<vector<int>>& connections) {
         if(connections.size() < n - 1) return -1;
-        rank.resize(n, 0);
         parent.resize(n);
         int extraWires=0;
         for (int i = 0; i < n; i++) parent[i] = i;
-        for(auto ele:connections){
-            int a=find(ele[0]);
-            int b=find(ele[1]);
 
-            if(a==b) extraWires++;
-
-            else Union(ele[0],ele[1]);
-        }
+        for(auto ele:connections) Union(ele[0],ele[1]);
 
         int connectedComponent=0;
         for(int i=0; i<n; i++){
-            if(parent[i]==i) connectedComponent++;
+            if(find(i)==i) connectedComponent++;
         }
 
         int wiresToBeNeeded=connectedComponent-1;
